@@ -1,0 +1,53 @@
+<div class="container mt-4 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4">
+            <i class="fas fa-comment-dots text-success"></i> Feedback
+          </h2>
+
+          <div class="alert alert-success" *ngIf="successMessage">
+            {{ successMessage }}
+          </div>
+
+          <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Rating *</label>
+              <div class="rating-stars mb-2">
+                <i class="fas fa-star fa-2x" 
+                   *ngFor="let star of [1,2,3,4,5]"
+                   [class.text-warning]="star <= feedbackForm.get('rating')?.value"
+                   [class.text-muted]="star > feedbackForm.get('rating')?.value"
+                   (click)="feedbackForm.patchValue({rating: star})"
+                   style="cursor: pointer;"></i>
+              </div>
+              <small class="text-muted">{{ feedbackForm.get('rating')?.value }} / 5</small>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Your Feedback *</label>
+              <textarea class="form-control" rows="5" formControlName="comment"
+                        placeholder="Share your experience with us..."></textarea>
+              <div class="text-danger small mt-1" 
+                   *ngIf="feedbackForm.get('comment')?.invalid && feedbackForm.get('comment')?.touched">
+                <span *ngIf="feedbackForm.get('comment')?.errors?.['required']">
+                  Feedback is required
+                </span>
+                <span *ngIf="feedbackForm.get('comment')?.errors?.['minlength']">
+                  Minimum 10 characters required
+                </span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100" 
+                    [disabled]="loading || feedbackForm.invalid">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+              {{ loading ? 'Submitting...' : 'Submit Feedback' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

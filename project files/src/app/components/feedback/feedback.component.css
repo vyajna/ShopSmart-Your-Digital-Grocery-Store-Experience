@@ -1,0 +1,12 @@
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.rating-stars i {
+  transition: color 0.2s ease;
+}
+
+.rating-stars i:hover {
+  transform: scale(1.1);
+}

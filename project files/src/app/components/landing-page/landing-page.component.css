@@ -1,0 +1,14 @@
+.hero-section {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features-section .card {
+  transition: transform 0.3s ease;
+}
+
+.features-section .card:hover {
+  transform: translateY(-10px);
+}

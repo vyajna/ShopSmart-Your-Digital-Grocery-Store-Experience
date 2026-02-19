@@ -1,0 +1,49 @@
+<div class="orders">
+  <h2 class="mb-4">Manage Orders</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <div *ngIf="loading" class="text-center py-4">
+        <div class="spinner-border text-success"></div>
+      </div>
+
+      <div class="table-responsive" *ngIf="!loading">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders">
+              <td>#{{ order._id.slice(-6) }}</td>
+              <td>{{ order.user?.name }}</td>
+              <td>{{ order.items.length }}</td>
+              <td>₹{{ order.totalAmount }}</td>
+              <td>
+                <select class="form-select form-select-sm" [(ngModel)]="order.orderStatus"
+                        (change)="updateOrderStatus(order._id, order.orderStatus)">
+                  <option value="Pending">Pending</option>
+                  <option value="Processing">Processing</option>
+                  <option value="Shipped">Shipped</option>
+                  <option value="Delivered">Delivered</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </td>
+              <td>{{ order.createdAt | date:'short' }}</td>
+              <td>
+                <span class="badge bg-secondary">{{ order.paymentMethod }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="dashboard">
+  <h2 class="mb-4">Dashboard Overview</h2>
+
+  <div class="row g-4 mb-4">
+    <div class="col-md-3">
+      <div class="card stats-card bg-primary text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>Total Products</h6>
+              <h3>{{ stats.totalProducts }}</h3>
+            </div>
+            <div>
+              <i class="fas fa-box-open fa-3x opacity-50"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stats-card bg-success text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>Total Orders</h6>
+              <h3>{{ stats.totalOrders }}</h3>
+            </div>
+            <div>
+              <i class="fas fa-shopping-bag fa-3x opacity-50"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stats-card bg-warning text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>Pending Orders</h6>
+              <h3>{{ stats.pendingOrders }}</h3>
+            </div>
+            <div>
+              <i class="fas fa-clock fa-3x opacity-50"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card stats-card bg-info text-white">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h6>Categories</h6>
+              <h3>{{ stats.totalCategories }}</h3>
+            </div>
+            <div>
+              <i class="fas fa-tags fa-3x opacity-50"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Recent Orders</h5>
+    </div>
+    <div class="card-body">
+      <div *ngIf="loading" class="text-center py-4">
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <div *ngIf="!loading && recentOrders.length === 0" class="text-center py-4">
+        No recent orders
+      </div>
+
+      <table class="table table-hover" *ngIf="!loading && recentOrders.length > 0">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of recentOrders">
+            <td>#{{ order._id.slice(-6) }}</td>
+            <td>{{ order.user?.name }}</td>
+            <td>₹{{ order.totalAmount }}</td>
+            <td>
+              <span class="badge" [class.bg-warning]="order.orderStatus === 'Pending'"
+                    [class.bg-info]="order.orderStatus === 'Processing'"
+                    [class.bg-success]="order.orderStatus === 'Delivered'">
+                {{ order.orderStatus }}
+              </span>
+            </td>
+            <td>{{ order.createdAt | date:'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

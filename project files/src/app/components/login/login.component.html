@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4">
+            <i class="fas fa-sign-in-alt text-success"></i> Login
+          </h2>
+          
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email" 
+                     placeholder="Enter your email">
+              <div class="text-danger small mt-1" 
+                   *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</span>
+                <span *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password" 
+                     placeholder="Enter your password">
+              <div class="text-danger small mt-1" 
+                   *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</span>
+                <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
+                  Password must be at least 6 characters
+                </span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100" [disabled]="loading || loginForm.invalid">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+              {{ loading ? 'Logging in...' : 'Login' }}
+            </button>
+          </form>
+
+          <hr class="my-4">
+          <p class="text-center mb-0">
+            Don't have an account? <a routerLink="/register" class="text-success">Register here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

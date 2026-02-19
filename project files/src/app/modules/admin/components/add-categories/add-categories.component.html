@@ -1,0 +1,64 @@
+<div class="add-categories">
+  <h2 class="mb-4">Manage Categories</h2>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Add New Category</h5>
+          <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Category Name *</label>
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" rows="3" formControlName="description"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Category Image</label>
+              <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*">
+            </div>
+
+            <button type="submit" class="btn btn-success w-100" [disabled]="loading || categoryForm.invalid">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+              {{ loading ? 'Adding...' : 'Add Category' }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Categories List</h5>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let category of categories">
+                  <td>{{ category.name }}</td>
+                  <td>{{ category.description }}</td>
+                  <td>
+                    <button class="btn btn-sm btn-danger" (click)="deleteCategory(category._id)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

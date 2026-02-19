@@ -1,0 +1,77 @@
+<div class="container mt-4 mb-5">
+  <h2 class="mb-4"><i class="fas fa-shipping-fast text-success"></i> Place Order</h2>
+
+  <div class="row" *ngIf="cart">
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Shipping Address</h5>
+          <form [formGroup]="orderForm">
+            <div formGroupName="shippingAddress">
+              <div class="mb-3">
+                <label class="form-label">Street Address *</label>
+                <input type="text" class="form-control" formControlName="street">
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">City *</label>
+                  <input type="text" class="form-control" formControlName="city">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">State *</label>
+                  <input type="text" class="form-control" formControlName="state">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">ZIP Code *</label>
+                  <input type="text" class="form-control" formControlName="zipCode">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Country *</label>
+                  <input type="text" class="form-control" formControlName="country">
+                </div>
+              </div>
+            </div>
+
+            <h5 class="card-title mt-4">Payment Method</h5>
+            <div class="mb-3">
+              <select class="form-select" formControlName="paymentMethod">
+                <option value="Cash on Delivery">Cash on Delivery</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="UPI">UPI</option>
+                <option value="Net Banking">Net Banking</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Order Summary</h5>
+          <hr>
+          <div *ngFor="let item of cart.items" class="mb-2">
+            <div class="d-flex justify-content-between">
+              <span>{{ item.product.name }} x {{ item.quantity }}</span>
+              <strong>₹{{ item.price * item.quantity }}</strong>
+            </div>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between mb-3">
+            <strong>Total Amount:</strong>
+            <strong class="h4 text-success">₹{{ cart.totalAmount }}</strong>
+          </div>
+          <button class="btn btn-success w-100" (click)="placeOrder()" 
+                  [disabled]="loading || orderForm.invalid">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+            {{ loading ? 'Placing Order...' : 'Place Order' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

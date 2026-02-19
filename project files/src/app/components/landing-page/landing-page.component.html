@@ -1,0 +1,92 @@
+<div class="landing-page">
+  <section class="hero-section text-white text-center py-5" 
+           style="background: linear-gradient(135deg, #28a745 0%, #218838 100%); position: relative; overflow: hidden;">
+    <!-- Decorative fruit and vegetable images -->
+    <div style="position: absolute; top: 10%; left: 5%; font-size: 80px; opacity: 0.2;">🍎</div>
+    <div style="position: absolute; top: 20%; right: 8%; font-size: 70px; opacity: 0.2;">🥕</div>
+    <div style="position: absolute; bottom: 15%; left: 10%; font-size: 90px; opacity: 0.2;">🍌</div>
+    <div style="position: absolute; bottom: 20%; right: 5%; font-size: 75px; opacity: 0.2;">🍅</div>
+    <div style="position: absolute; top: 50%; left: 2%; font-size: 60px; opacity: 0.15;">🥬</div>
+    <div style="position: absolute; top: 40%; right: 3%; font-size: 65px; opacity: 0.15;">🍊</div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
+      <h1 class="display-3 fw-bold mb-4">Welcome to ShopSmart</h1>
+      <p class="lead mb-4">Your Digital Grocery Store Experience</p>
+      <p class="mb-4">Fresh groceries delivered to your doorstep. Shop from thousands of products!</p>
+      
+      <!-- Featured products preview -->
+      <div class="d-flex justify-content-center mb-4" style="gap: 20px; flex-wrap: wrap;">
+        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+          <div style="font-size: 50px;">🍎</div>
+          <small>Fresh Fruits</small>
+        </div>
+        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+          <div style="font-size: 50px;">🥕</div>
+          <small>Vegetables</small>
+        </div>
+        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+          <div style="font-size: 50px;">🥛</div>
+          <small>Dairy</small>
+        </div>
+        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; backdrop-filter: blur(10px);">
+          <div style="font-size: 50px;">🍞</div>
+          <small>Bakery</small>
+        </div>
+      </div>
+      
+      <div>
+        <a routerLink="/home" class="btn btn-light btn-lg me-3">
+          <i class="fas fa-shopping-basket me-2"></i>Start Shopping
+        </a>
+        <a routerLink="/register" class="btn btn-outline-light btn-lg">
+          <i class="fas fa-user-plus me-2"></i>Join Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Why Choose ShopSmart?</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 text-center border-0 shadow">
+            <div class="card-body">
+              <i class="fas fa-truck fa-3x text-success mb-3"></i>
+              <h5 class="card-title">Fast Delivery</h5>
+              <p class="card-text">Get your groceries delivered within hours</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 text-center border-0 shadow">
+            <div class="card-body">
+              <i class="fas fa-leaf fa-3x text-success mb-3"></i>
+              <h5 class="card-title">Fresh Products</h5>
+              <p class="card-text">Quality guaranteed fresh produce and groceries</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 text-center border-0 shadow">
+            <div class="card-body">
+              <i class="fas fa-tags fa-3x text-success mb-3"></i>
+              <h5 class="card-title">Best Prices</h5>
+              <p class="card-text">Competitive prices and amazing deals</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section bg-light py-5">
+    <div class="container text-center">
+      <h2 class="mb-4">Ready to Start Shopping?</h2>
+      <p class="lead mb-4">Join thousands of satisfied customers</p>
+      <a routerLink="/home" class="btn btn-success btn-lg">
+        <i class="fas fa-shopping-cart me-2"></i>Browse Products
+      </a>
+    </div>
+  </section>
+</div>
